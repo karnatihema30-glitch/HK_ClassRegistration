@@ -1,0 +1,45 @@
+﻿@model List<HK_Registration.Models.HKClass>
+@{
+    ViewData["Title"] = "Class Registration";
+}
+<div class="mb-2">
+    <a asp-action="Add" class="btn btn-primary mb-3">
+    Add A New Class
+</a>
+</div>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Number</th>
+            <th>Department</th>
+            <th>Credit</th>
+            <th>Capacity</th><th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model) {
+            <tr>
+                <td>@item.Name</td>
+               <td>@item.Number</td>
+                <td>@item.Department</td>
+                <td>@item.Credit</td>
+                <td>@item.Capacity</td>
+                <td>
+                    <a asp-action="Edit"
+                    asp-route-id="@item.CourseID"
+                    class="btn btn-warning btn-sm">
+                    Edit
+                    </a>
+
+                    <a asp-action="Delete"
+                    asp-route-id="@item.CourseID"
+                    class="btn btn-danger btn-sm">
+                    Delete
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

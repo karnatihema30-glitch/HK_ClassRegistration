@@ -1,0 +1,85 @@
+@model HK_Registration.Models.HKClass
+
+@{
+    ViewData["Title"] =
+        Model?.CourseID > 0 ? "Edit Class" : "Add New Class";
+}
+
+<div class="row">
+    <div class="col-md-6">
+
+        <h2>@ViewData["Title"]</h2>
+        <hr />
+
+        <form asp-action="@(Model?.CourseID > 0 ? "Edit" : "Add")"
+              method="post">
+
+            @if (Model != null && Model.CourseID > 0)
+            {
+             <input type="hidden" asp-for="CourseID" />
+            }
+
+            <div asp-validation-summary="All"
+            class="text-danger mb-3"></div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Name" class="form-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name"
+                      class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Number" class="form-label"></label>
+                <input asp-for="Number" class="form-control" />
+                <span asp-validation-for="Number"
+                      class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Department" class="form-label"></label>
+                <select asp-for="Department" class="form-select">
+                    <option value="">Select Department</option>
+                    <option>Computer Science</option>
+                    <option>Health Informatics</option>
+                    <option>Mathematics</option>
+                    <option>Chemistry</option>
+                </select>
+                <span asp-validation-for="Department"
+                      class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Credit" class="form-label"></label>
+                <input asp-for="Credit" class="form-control" />
+                <span asp-validation-for="Credit"
+                      class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Capacity" class="form-label"></label>
+                <input asp-for="Capacity" class="form-control" />
+                <span asp-validation-for="Capacity"
+                      class="text-danger"></span>
+            </div>
+
+            <button type="submit"
+                    class="btn btn-primary rounded-pill">
+                Save
+            </button>
+
+            <a asp-action="Index"
+               class="btn btn-secondary rounded-pill">
+                Cancel
+            </a>
+
+        </form>
+
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
