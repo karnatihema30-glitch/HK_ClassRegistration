@@ -38,7 +38,8 @@ namespace HK_Registration.Controllers
             }
 
             return View(hkClass);
-        }       
+        } 
+              
          // GET: Home/Edit
         public IActionResult Edit(int id)
         {
@@ -48,22 +49,22 @@ namespace HK_Registration.Controllers
         return NotFound();
 
         return View("Add", course);
-}
+        }
 
- // POST: Home/Edit
-[HttpPost]
-public IActionResult Edit(HKClass hkClass)
-{
-    if (ModelState.IsValid)
-    {
-        _context.Classes.Update(hkClass);
-        _context.SaveChanges();
+        // POST: Home/Edit
+        [HttpPost]
+        public IActionResult Edit(HKClass hkClass)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Classes.Update(hkClass);
+                _context.SaveChanges();
 
-        return RedirectToAction(nameof(Index));
-    }
+                return RedirectToAction(nameof(Index));
+            }
 
-    return View("Add", hkClass);
-}
+            return View("Add", hkClass);
+        }
         // GET: Home/Delete
         public IActionResult Delete(int id)
         {
